@@ -171,8 +171,7 @@ The main entry point of the TD project should be clearly delinated at the projec
 <a name="1.2"></a>
 <a name=".gitignore"></a>
 ## Use a `.gitignore` to keep large files out of your repo.
-`HAP` or `NOTCH` files are great for playback. Unfortuneatly, these files can get VERY large. Ideally you should use .gitignore to ignore all files in the `mov` directory to keep them out of the project. On cloning the repo a combination of .bat scripts and or manual copying from seperate distro links should be use to get the file up to speed. Ideally the projects `README.md` will have project and or organization specefic guidelines on how a new developer can go about getting content files
-
+`HAP` or `NOTCH` files are great for playback. Unfortuneatly, these files can get VERY large. Ideally you should use .gitignore to ignore all files in the `mov` directory to keep them out of the project. On cloning the repo a combination of .bat scripts and or manual copying from seperate distro links should be use to get the file up to speed. Ideally the projects `README.md` will have project and or organization specefic guidelines on how a new developer can go about getting content files.
 
 
 <a name="1.3"></a>
@@ -224,6 +223,8 @@ Obvs this is not a hard and fast rule. If you're dropping a one liner into a `Ti
 Related to <a href="#1.5">1.5</a> and <a href="#3.1">3.1</a> The team should try and keep all top level toxes externalized and version controlled. This will essentially allow different team members to work in tandem on different aspects of the project without the fear of overwriting each other's work when it comes to merge time. Tops can be externalized via the `Common` tab. Use a relative path here to prevent deployment hell
 
 
+
+
 <a name ="1.7"></a>
 <a name ="local assets"></a>
 ## All assets should be referenced via relative paths
@@ -245,9 +246,9 @@ This section will focus on the internal composition of TD Networks and their int
 ## 2.2 Network Topology
 The top level of a network is the first thing a new developer or user sees when they open your patch. Where possible the top level of a TD project should contain only `containers` or `bases` that have been clearly named based on its function. 
 
-todo : image here
+![Alt text](images/networktop.PNG?raw=true "Network Topology")
 
-This allows the next developer to quickly gain a high level understanding of the core functions of your patch and allows them to get up to speed on their tasks quickly. If possible, each of these top level containers is an external tox and stored in version control
+This allows the next developer to quickly gain a high level understanding of the core functions of your patch and allows them to get up to speed on their tasks quickly. If possible, each of these top level containers should be an external tox and stored in version control
 
 <a name = "2.3"></a>
 <a name = "Global operator shortcuts"></a>
@@ -265,6 +266,7 @@ related to the above. Every container at the top level of the project can and sh
 
 All variables referenced in many different places in the networks should be stored in a top level base named `config` 
 
+![Alt text](images/config.PNG?raw=true "Network Topology")
 
 While the specefic type of variables will vary by project some good canidates for this technique include:
 <pre>
@@ -277,24 +279,56 @@ While the specefic type of variables will vary by project some good canidates fo
 
 ### 2.3.1 Assign a `global operator shortcut` to the `config` base
 When referencing the project level `config` top use `expressions` to keep your networks clean. `global operator shortcuts` can configured in the `Common` pane of the network operator. 
-> This allows you to reference the project configuration anywhere in the project without having to break your references. Consider the following:
 
-image
+![Alt text](images/global-operator-config.PNG?raw=true "Referencing Config")
+
+> This allows you to reference the project configuration anywhere in the project without having to break your references.
+
+![Alt text](images/referencing_config.PNG?raw=true "Referencing Config")
 
 
-vs:
-
-
-image
-
-> while both approaches can lead to the correct project resolution. If this variable is hard coded into multiple operators accross many different networks this can lead to unexpected behavior in the case of updates or scope changes.
+> both approaches can lead to the correct project resolution. However, if this variable is hard coded into multiple operators accross many different networks this can lead to unexpected behavior in the case of updates or scope changes.
 
 
 
 
 
-# 3.0 Development
-The following section focuses on a set of development practices. Mileage may vary based on team composition and project time frame.
+<a name = "3.0"></a>
+<a name = "Development Practices"></a>
+# 3.0 Version Control Development Practices
+
+Here are some Radical specefic development practices that should be followed to the best of your ability
+
+
+## 3.1 Use a seperate tagged branch per release.
+Ideally commits made day to day development on any given project is made toward a `release-0.X` branch. Once branches are reviewed and deployed to production hardware they should be merged into `main` specefic features and or bugfixes should be addressed in a seperate branch and prefixed with either `bugfix` or `feature` or `refactor`
+
+
+![Alt text](images/gitflow.PNG?raw=true "Git Flow")
+
+
+
+## 3.2 Create a seperate branch prior to creative reviews.
+
+Creative reviews are a special case in TD development. It may be desireable for the developer or development team to make spot changes based on the requests of the creative team in situ. This guide suggests that before each creative review a spererate branch is checked-out with `git checkout -b review-0.X release-0.X` where `X` represents the release number that will be reviewed
+
+After the review and changes made by the team can then be merged back into the `release-0.X` branch and pushed to VC.
+
+
+
+## 3.3 Bugfixes in install.
+
+Don't Panic! Try to follow some version of these instructions. It will make everything easier later
+
+If a hotfix is neccessary during the install or shuowrun process the first thing you should do is **not panic.**
+
+The second thing you should do is use source control to checkout a new branch on production with the prefix `hotfix` and increment the release number by a decimal point.
+
+then you should fix the bug
+
+if you're in show run conditions take a breath and ensure that the rest of the show operates normally
+
+once showrun  
 
 
 
