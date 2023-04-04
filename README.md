@@ -2,7 +2,7 @@
 
 A mostly reasonable approach to Touch Designer Development
 
-this document was started and heavily inspired by the Gamemakin ue-style guide and represents the collected insights 7+ years of daily freelance TD development by @picturesbyrobots. The techniques herein were codified, battle tested, documented, and refined while the former served as creative technologist at the never estabilshed, always innovative,  @radicalmedia 
+this document was started and heavily inspired by the Gamemakin ue-style guide
 
 ## Table of Contents
 
