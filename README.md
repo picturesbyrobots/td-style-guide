@@ -297,15 +297,6 @@ When referencing the project level `config` top use `expressions` to keep your n
 <a name = "Development Practices"></a>
 # 3.0 Version Control Development Practices
 
-Here are some Radical specefic development practices that should be followed to the best of your ability
-
-
-## 3.1 Use a seperate tagged branch per release.
-Ideally commits made day to day development on any given project is made toward a `release-0.X` branch. Once branches are reviewed and deployed to production hardware they should be merged into `main` specefic features and or bugfixes should be addressed in a seperate branch and prefixed with either `bugfix` or `feature` or `refactor`
-
-
-![Alt text](images/gitflow.PNG?raw=true "Git Flow")
-
 
 
 ## 3.2 Create a seperate branch prior to creative reviews.
